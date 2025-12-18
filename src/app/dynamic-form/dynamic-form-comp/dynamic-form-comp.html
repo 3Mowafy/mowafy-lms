@@ -1,0 +1,52 @@
+<!-- Form Title -->
+@if(formConfig().displayTitle) {
+<h2 [class]="formConfig().formTitleStyleClass ?? 'text-3xl font-bold'">
+  {{ formConfig().formTitle }}
+</h2>
+}
+<!-- Horizontal Rule After Title -->
+@if (formConfig().hrAfterTitle){
+<hr [class]="formConfig().hrAfterTitleStyleClass ?? 'my-5'" />
+}
+
+<form [class]="formConfig().formStyleClass ?? 'flex flex-col gap-y-4'">
+  {{ dynamicForm().value() | json }}
+  @for (field of receivedFields(); track $index ) {
+  <app-field-render-comp
+    [formField]="field"
+    [fieldControl]="dynamicForm[field.name]"
+  ></app-field-render-comp>
+
+  @if (!dynamicForm[field.name].valid && dynamicForm[field.name].touched) {
+  <p-message severity="error" variant="simple" size="small">Username is required</p-message>
+  } }
+  <!-- Actions -->
+  @if (formConfig().showFormButtons) {
+  <div class="flex justify-between">
+    <p-button
+      (onClick)="onReset()"
+      label="Reset"
+      variant="text"
+      [raised]="true"
+      severity="danger"
+    />
+
+    <p-button
+      (onClick)="onCancel()"
+      label="Cancel"
+      variant="text"
+      [raised]="true"
+      severity="info"
+    />
+
+    <p-button
+      (onClick)="onSubmit()"
+      label="Secondary"
+      variant="text"
+      [raised]="true"
+      severity="success"
+      label="Submit"
+    />
+  </div>
+  }
+</form>

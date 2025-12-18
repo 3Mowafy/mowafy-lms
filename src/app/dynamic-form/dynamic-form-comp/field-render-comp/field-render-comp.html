@@ -1,0 +1,35 @@
+<ng-container>
+  @switch(formField().type) { @case(fieldType.CHECKBOX){
+  <ng-container>
+    <app-checkbox-field [field]="formField()" [fieldName]="fieldControl()" />
+  </ng-container>
+  } @case (fieldType.DATE) {
+  <ng-container>
+    <app-date-field [field]="formField()" [fieldName]="fieldControl()" />
+  </ng-container>
+  } @case (fieldType.EMAIL) {
+  <app-email-field [field]="formField()" [fieldName]="fieldControl()" />
+  } @case (fieldType.KEYFILTER) {
+  <app-keyfilter-field [field]="formField()" [fieldName]="fieldControl()" />
+  } @case (fieldType.MULTISELECT) {
+  <app-multiselect-field [field]="formField()" [fieldName]="fieldControl()" />
+  } @case (fieldType.NUMBER) {
+  <app-number-field [field]="formField()" [fieldName]="fieldControl()" />
+  } @case (fieldType.OTP) {
+  <app-otp-field [field]="formField()" [fieldName]="fieldControl()" />
+  } @case (fieldType.PASSWORD) {
+  <app-password-field [field]="formField()" [fieldName]="fieldControl()" />
+  } @case (fieldType.RADIO) {
+  <app-radiobutton-field [field]="formField()" [fieldName]="fieldControl()" />
+  } @case (fieldType.SELECT) {
+  <app-select-field [field]="formField()" [fieldName]="fieldControl()" />
+  } @case (fieldType.TEXT) {
+  <app-text-field [field]="formField()" [fieldName]="fieldControl()" />
+  } @case (fieldType.TEXTAREA) {
+  <app-textarea-field [field]="formField()" [fieldName]="fieldControl()" />
+  } @case (fieldType.TOGGLE) {
+  <app-toggle-field [field]="formField()" [fieldName]="fieldControl()" />
+  } @case (fieldType.FILE) {
+  <app-file-field [field]="formField()" [fieldName]="fieldControl()" />
+  } }
+</ng-container>

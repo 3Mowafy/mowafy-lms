@@ -18,6 +18,7 @@ export interface ICheckboxField extends BaseField {
   type: FieldType.CHECKBOX;
   checkBoxbinary?: boolean; // for checkbox, default: false
   options: { name: string; key: string }[]; // for checkbox
+  columns?: 1 | 2 | 3 | 4 | 6; // default: 1
 }
 
 export interface ITextField extends BaseField {

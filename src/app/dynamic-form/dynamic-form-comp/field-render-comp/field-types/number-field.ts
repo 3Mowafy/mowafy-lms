@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Field, FieldTree } from '@angular/forms/signals';
+import { Field } from '@angular/forms/signals';
 
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -34,5 +34,5 @@ import { IFormFieldsConfig } from '../../../interfaces/dynamic-form';
 })
 export class NumberField {
   field = input.required<IFormFieldsConfig>();
-  fieldName = input.required<FieldTree<any>>();
+  fieldName = input.required<any>();
 }

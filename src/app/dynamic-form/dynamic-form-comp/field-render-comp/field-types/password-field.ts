@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Field, FieldTree } from '@angular/forms/signals';
+import { Field } from '@angular/forms/signals';
 
 import { IFormFieldsConfig } from '../../../interfaces/dynamic-form';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -32,5 +32,5 @@ import { PasswordModule } from 'primeng/password';
 })
 export class PasswordField {
   field = input.required<IFormFieldsConfig>();
-  fieldName = input.required<FieldTree<any>>();
+  fieldName = input.required<any>();
 }

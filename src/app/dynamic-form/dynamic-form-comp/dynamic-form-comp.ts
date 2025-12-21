@@ -34,6 +34,10 @@ export class DynamicFormComp {
     });
   }
 
+  onReceivedFilesFromFieldRender(event: any, fieldName: string) {
+    this.dynamicForm().value.update((values) => ({ ...values, [fieldName]: event }));
+  }
+
   onSubmit() {
     console.log('Dynamic Form Value:', this.dynamicForm().value());
   }

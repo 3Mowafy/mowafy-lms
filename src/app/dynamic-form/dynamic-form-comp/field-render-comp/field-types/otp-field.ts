@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Field, FieldTree } from '@angular/forms/signals';
+import { Field } from '@angular/forms/signals';
 
 import { InputOtpModule } from 'primeng/inputotp';
 
@@ -21,5 +21,5 @@ import { IFormFieldsConfig } from '../../../interfaces/dynamic-form';
 })
 export class OtpField {
   field = input.required<IFormFieldsConfig>();
-  fieldName = input.required<FieldTree<any>>();
+  fieldName = input.required<any>();
 }

@@ -40,6 +40,7 @@ export interface IFormFieldsConfig {
   fieldStyleClass?: string; // field container style class
   inputStyleClass?: string; // input style class
   checkBoxbinary?: boolean; // for checkbox, default: false
+  columns?: 1 | 2 | 3 | 4 | 5 | 6; // default: 1
   labelStyleClass?: string;
   floatlabel?: 'in' | 'over' | 'on'; // default: 'on'
   label?: string;

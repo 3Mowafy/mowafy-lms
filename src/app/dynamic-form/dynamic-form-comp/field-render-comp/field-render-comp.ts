@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FieldType, IFormFieldsConfig } from '../../interfaces/dynamic-form';
@@ -42,5 +42,20 @@ export class FieldRenderComp {
   formField = input.required<IFormFieldsConfig>();
   fieldControl = input.required<any>();
 
+  sendFilesToDynamicFormComp = output<any>();
+
+  gridClass = computed(() => {
+    const cols = this.formField().columns ?? 2;
+    return `grid grid-cols-${cols} gap-3`;
+  });
+
   fieldType = FieldType;
+
+  ngOnInit() {
+    console.log(this.gridClass());
+  }
+
+  onReceivedFilesFromFileField(event: any) {
+    this.sendFilesToDynamicFormComp.emit(event);
+  }
 }

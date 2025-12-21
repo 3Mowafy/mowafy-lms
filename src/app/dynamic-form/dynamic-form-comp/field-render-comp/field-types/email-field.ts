@@ -30,5 +30,5 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 })
 export class EmailField {
   field = input.required<IFormFieldsConfig>();
-  fieldName = input.required<FieldTree<string>>();
+  fieldName = input.required<any>();
 }

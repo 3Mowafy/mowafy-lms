@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Field, FieldTree } from '@angular/forms/signals';
+import { Field } from '@angular/forms/signals';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -31,7 +31,7 @@ import { IFormFieldsConfig } from '../../../interfaces/dynamic-form';
 })
 export class KeyfilterField {
   field = input.required<IFormFieldsConfig>();
-  fieldName = input.required<FieldTree<string>>();
+  fieldName = input.required<any>();
 
   blockSpace: RegExp = /^[^\s]+$/;
 }

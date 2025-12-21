@@ -33,5 +33,5 @@ import { IFormFieldsConfig } from '../../../interfaces/dynamic-form';
 })
 export class MultiselectField {
   field = input.required<IFormFieldsConfig>();
-  fieldName = input.required<FieldTree<any>>();
+  fieldName = input.required<any>();
 }

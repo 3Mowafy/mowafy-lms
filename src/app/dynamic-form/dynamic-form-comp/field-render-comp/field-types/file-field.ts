@@ -1,15 +1,11 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
-import { IFormFieldsConfig } from '../../../interfaces/dynamic-form';
 import { FileUpload } from 'primeng/fileupload';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 
-interface UploadEvent {
-  originalEvent: Event;
-  files: File[];
-}
+import { IFormFieldsConfig } from '../../../interfaces/dynamic-form';
 
 @Component({
   selector: 'app-file-field',
@@ -18,12 +14,12 @@ interface UploadEvent {
   template: `
     <p-fileupload
       name="demo[]"
-      url="https://www.primefaces.org/cdn/api/upload.php"
-      (onUpload)="onUpload($event)"
-      [multiple]="true"
+      [multiple]="false"
       accept="image/*"
       maxFileSize="1000000"
       mode="advanced"
+      [customUpload]="true"
+      (onSelect)="onFileChange($event)"
     >
       <ng-template #empty>
         <div>Drag and drop files to here to upload.</div>
@@ -32,18 +28,14 @@ interface UploadEvent {
   `,
 })
 export class FileField {
-  private messageService = inject(MessageService);
-
   field = input.required<IFormFieldsConfig>();
-  fieldName = input.required<any>();
 
-  uploadedFiles: any[] = [];
+  sendFilesToFieldRender = output<any>();
 
-  onUpload(event: any) {
-    for (let file of event.files) {
-      this.uploadedFiles.push(file);
-    }
+  onFileChange(event: any) {
+    console.log(event.currentFiles);
+    const files = event.currentFiles;
 
-    this.messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
+    this.sendFilesToFieldRender.emit(files);
   }
 }

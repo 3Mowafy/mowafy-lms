@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Field, FieldTree } from '@angular/forms/signals';
+import { Field } from '@angular/forms/signals';
 
 import { CheckboxModule } from 'primeng/checkbox';
 
@@ -9,8 +9,8 @@ import { IFormFieldsConfig } from '../../../interfaces/dynamic-form';
   selector: 'app-checkbox-field',
   imports: [CheckboxModule, Field],
   template: `
-    <div [class]="field().fieldStyleClass ?? 'flex gap-x-2 overflow-auto'">
-      @for (option of field().options; track option.key) {
+    @for (option of field().options; track option.key) {
+    <div class="flex items-center">
       <p-checkbox
         [inputId]="option.key"
         [value]="option.key"
@@ -20,11 +20,11 @@ import { IFormFieldsConfig } from '../../../interfaces/dynamic-form';
       <label [for]="option.key" [class]="field().labelStyleClass ?? 'ml-2'">
         {{ option.name }}
       </label>
-      }
     </div>
+    }
   `,
 })
 export class CheckboxField {
   field = input.required<IFormFieldsConfig>();
-  fieldName = input.required<FieldTree<any>>();
+  fieldName = input.required<any>();
 }

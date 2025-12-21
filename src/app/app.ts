@@ -14,7 +14,7 @@ export class App {
   readonly formFields = signal<initFormFields[]>([
     {
       type: FieldType.CHECKBOX,
-      name: 'categories',
+      name: 'cats',
       value: '',
       validators: ['required'],
       options: [
@@ -29,6 +29,8 @@ export class App {
       name: 'dateOfBirth',
       value: '',
       floatlabel: 'on',
+      numberOfMonthsForDates: 1,
+      showTimeForDates: false,
       label: 'Date of Birth',
       validators: ['required'],
     },
@@ -61,7 +63,7 @@ export class App {
     {
       type: FieldType.NUMBER,
       name: 'age',
-      value: null,
+      value: 0,
       label: 'Age',
       validators: ['required'],
     },
@@ -93,7 +95,7 @@ export class App {
     },
     {
       type: FieldType.SELECT,
-      name: 'categories',
+      name: 'categos',
       value: null,
       validators: ['required'],
       options: [

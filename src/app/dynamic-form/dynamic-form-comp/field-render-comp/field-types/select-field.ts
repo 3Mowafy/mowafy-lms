@@ -1,26 +1,35 @@
 import { Component, input } from '@angular/core';
-import { Field, FieldTree } from '@angular/forms/signals';
+import { Field } from '@angular/forms/signals';
+
+import { SelectModule } from 'primeng/select';
+import { FloatLabel } from 'primeng/floatlabel';
 
 import { IFormFieldsConfig } from '../../../interfaces/dynamic-form';
-import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-select-field',
-  imports: [SelectModule, Field],
+  imports: [SelectModule, Field, FloatLabel],
   template: `
-    <p-select
-      [options]="field().options"
-      [field]="fieldName()"
-      [showClear]="field().clearSelected ?? true"
-      [class]="field().inputStyleClass"
-      [fluid]="field().inputFluid ?? true"
-      [editable]="field().searchInMenu ?? true"
-      optionLabel="name"
-      [placeholder]="field().label ?? 'Select an option'"
-    />
+    <p-floatlabel [variant]="field().floatlabel ?? 'on'">
+      <p-select
+        [id]="field().fieldLabelInputId ?? field().name"
+        [options]="field().options"
+        [field]="fieldName()"
+        [showClear]="field().clearSelected ?? true"
+        [class]="field().inputStyleClass"
+        [fluid]="field().inputFluid ?? true"
+        [editable]="field().searchInMenu ?? true"
+        optionLabel="name"
+      />
+      <label
+        [for]="field().fieldLabelInputId ?? field().name"
+        [class]="field().labelStyleClass ?? 'ml-2'"
+        >{{ field().label ?? 'Select an option' }}</label
+      >
+    </p-floatlabel>
   `,
 })
 export class SelectField {
   field = input.required<IFormFieldsConfig>();
-  fieldName = input.required<FieldTree<any>>();
+  fieldName = input.required<any>();
 }

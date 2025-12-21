@@ -1,35 +1,46 @@
 <ng-container>
   @switch(formField().type) { @case(fieldType.CHECKBOX){
-  <ng-container>
+  <div [ngClass]="gridClass()">
     <app-checkbox-field [field]="formField()" [fieldName]="fieldControl()" />
-  </ng-container>
+  </div>
   } @case (fieldType.DATE) {
-  <ng-container>
+  <div>
     <app-date-field [field]="formField()" [fieldName]="fieldControl()" />
-  </ng-container>
+  </div>
   } @case (fieldType.EMAIL) {
-  <app-email-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div>
+    <app-email-field [field]="formField()" [fieldName]="fieldControl()" />
+  </div>
   } @case (fieldType.KEYFILTER) {
-  <app-keyfilter-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div>
+    <app-keyfilter-field [field]="formField()" [fieldName]="fieldControl()" />
+  </div>
   } @case (fieldType.MULTISELECT) {
-  <app-multiselect-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div><app-multiselect-field [field]="formField()" [fieldName]="fieldControl()" /></div>
   } @case (fieldType.NUMBER) {
-  <app-number-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div><app-number-field [field]="formField()" [fieldName]="fieldControl()" /></div>
   } @case (fieldType.OTP) {
-  <app-otp-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div><app-otp-field [field]="formField()" [fieldName]="fieldControl()" /></div>
   } @case (fieldType.PASSWORD) {
-  <app-password-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div><app-password-field [field]="formField()" [fieldName]="fieldControl()" /></div>
   } @case (fieldType.RADIO) {
-  <app-radiobutton-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div [ngClass]="gridClass()">
+    <app-radiobutton-field [field]="formField()" [fieldName]="fieldControl()" />
+  </div>
   } @case (fieldType.SELECT) {
-  <app-select-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div><app-select-field [field]="formField()" [fieldName]="fieldControl()" /></div>
   } @case (fieldType.TEXT) {
-  <app-text-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div><app-text-field [field]="formField()" [fieldName]="fieldControl()" /></div>
   } @case (fieldType.TEXTAREA) {
-  <app-textarea-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div><app-textarea-field [field]="formField()" [fieldName]="fieldControl()" /></div>
   } @case (fieldType.TOGGLE) {
-  <app-toggle-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div><app-toggle-field [field]="formField()" [fieldName]="fieldControl()" /></div>
   } @case (fieldType.FILE) {
-  <app-file-field [field]="formField()" [fieldName]="fieldControl()" />
+  <div>
+    <app-file-field
+      [field]="formField()"
+      (sendFilesToFieldRender)="onReceivedFilesFromFileField($event)"
+    />
+  </div>
   } }
 </ng-container>

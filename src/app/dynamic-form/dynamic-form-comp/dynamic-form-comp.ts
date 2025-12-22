@@ -33,12 +33,7 @@ export class DynamicFormComp {
   readonly dynamicForm = form<IFormFields>(this.formFields, this.validationFn);
 
   validationFn(schemaPath: SchemaPathTree<IFormFields>) {
-    const proxy = new Proxy(schemaPath, {
-      get(target, prop) {
-        return target[prop as keyof SchemaPathTree<IFormFields>];
-      },
-    });
-    console.log('Schema Path:', proxy); // هنا الـ keys موجودة بس مش نافع نأكسس عليها
+    console.log('Schema Path:', schemaPath); // هنا الـ keys موجودة بس مش نافع نأكسس عليها
     return [
       required(schemaPath['cats'], { message: 'At least one category must be selected' }),
       required(schemaPath['email'], { message: 'Email is required' }),

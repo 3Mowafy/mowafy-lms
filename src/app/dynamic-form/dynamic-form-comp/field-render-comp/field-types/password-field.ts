@@ -15,6 +15,13 @@ import { PasswordModule } from 'primeng/password';
         [feedback]="field().passwordFeedback ?? true"
         [toggleMask]="field().passwordToggleMask ?? true"
         [promptLabel]="field().passwordPromptLabel ?? 'Enter a password'"
+        [mediumRegex]="
+          field().passwordMediumRegex ?? '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$'
+        "
+        [strongRegex]="
+          field().passwordStrongRegex ??
+          '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'
+        "
         [weakLabel]="field().passwordWeakLabel ?? 'Weak'"
         [mediumLabel]="field().passwordMediumLabel ?? 'Medium'"
         [strongLabel]="field().passwordStrongLabel ?? 'Strong'"

@@ -6,8 +6,10 @@
 <hr [class]="formConfig().hrAfterTitleStyleClass ?? 'my-5'" />
 }
 
+
 <form [class]="formConfig().formStyleClass ?? 'flex flex-col gap-y-4'">
   {{ dynamicForm().value() | json }}
+  {{ dynamicForm().errors() | json }}
   @for (field of receivedFields(); track $index ) {
   <app-field-render-comp
     [formField]="field"
@@ -15,9 +17,12 @@
     (sendFilesToDynamicFormComp)="onReceivedFilesFromFieldRender($event, field.name)"
   ></app-field-render-comp>
 
-  @if (!dynamicForm[field.name].valid && dynamicForm[field.name].touched) {
-  <p-message severity="error" variant="simple" size="small">Username is required</p-message>
-  } }
+  <!-- @if (!dynamicForm[field.name].valid && dynamicForm[field.name].touched) { -->
+  <p-message severity="error" variant="simple" size="small">{{
+    dynamicForm[field.name]().errors() | json
+  }}</p-message>
+  }
+  <!-- } -->
   <!--  -->
   @if (formConfig().showFormButtons) {
   <div class="flex justify-between">

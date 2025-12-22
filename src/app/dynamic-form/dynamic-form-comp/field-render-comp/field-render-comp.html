@@ -1,6 +1,6 @@
 <ng-container>
   @switch(formField().type) { @case(fieldType.CHECKBOX){
-  <div [ngClass]="gridClass()">
+  <div>
     <app-checkbox-field [field]="formField()" [fieldName]="fieldControl()" />
   </div>
   } @case (fieldType.DATE) {
@@ -24,7 +24,7 @@
   } @case (fieldType.PASSWORD) {
   <div><app-password-field [field]="formField()" [fieldName]="fieldControl()" /></div>
   } @case (fieldType.RADIO) {
-  <div [ngClass]="gridClass()">
+  <div>
     <app-radiobutton-field [field]="formField()" [fieldName]="fieldControl()" />
   </div>
   } @case (fieldType.SELECT) {

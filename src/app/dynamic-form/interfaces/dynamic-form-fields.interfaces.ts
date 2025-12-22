@@ -4,7 +4,7 @@ interface BaseField {
   name: string;
   type: FieldType;
   value: any;
-  validators: string[];
+  validators?: { name: string; value?: any; message: string }[];
   inputFluid?: boolean; // default: true
   inputStyleClass?: string;
   label?: string;
@@ -18,7 +18,6 @@ export interface ICheckboxField extends BaseField {
   type: FieldType.CHECKBOX;
   checkBoxbinary?: boolean; // for checkbox, default: false
   options: { name: string; key: string }[]; // for checkbox
-  columns?: 1 | 2 | 3 | 4 | 6; // default: 1
 }
 
 export interface ITextField extends BaseField {
@@ -80,6 +79,8 @@ export interface IPasswordField extends BaseField {
   passwordWeakLabel?: string; // default: 'Weak'
   passwordMediumLabel?: string; // default: 'Medium'
   passwordStrongLabel?: string; // default: 'Strong'
+  passwordMediumRegex?: string;
+  passwordStrongRegex?: string;
 }
 
 export interface IRadioField extends BaseField {
@@ -105,4 +106,26 @@ export interface IToggleField extends BaseField {
 
 export interface IFileField extends BaseField {
   type: FieldType.FILE;
+  accept?: string; // for type of file
+  multiple?: boolean; // default: true
+  maxFileSize?: number; // default: 1000000
+  mode?: 'advanced' | 'basic' | undefined; // default: 'basic'
+  customUpload?: boolean; // default: true
+  cancelIcon?: string; // default: 'pi pi-times'
+  chooseIcon?: string; // default: 'pi pi-plus'
+  fileLimit?: number; // default: 5
+  chooseLabel?: string; // default: 'Browse'
+  uploadLabel?: string; // default: 'Upload'
+  cancelLabel?: string; // default: 'Cancel'
+  showUploadButton?: boolean; // default: false
+  showCancelButton?: boolean; // default: true
+  cancelStyleClass?: string; // default: empty
+  removeStyleClass?: string; // default: empty
+  chooseStyleClass?: string; // default: empty
+  invalidFileLimitMessageSummary?: string; // default: 'You can only upload up to {fileLimit} files.'
+  invalidFileSizeMessageSummary?: string; // default: 'File size exceeds maximum limit of {maxFileSize} MB.'
+  invalidFileTypeMessageSummary?: string; // default: 'Invalid file type. Please select files of type: {accept}'
+  invalidFileLimitMessageDetail?: string; // default: ''
+  invalidFileSizeMessageDetail?: string; // default: ''
+  invalidFileTypeMessageDetail?: string; // default: ''
 }

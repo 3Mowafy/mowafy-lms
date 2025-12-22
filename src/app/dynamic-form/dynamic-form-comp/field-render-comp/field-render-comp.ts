@@ -44,16 +44,9 @@ export class FieldRenderComp {
 
   sendFilesToDynamicFormComp = output<any>();
 
-  gridClass = computed(() => {
-    const cols = this.formField().columns ?? 2;
-    return `grid grid-cols-${cols} gap-3`;
-  });
 
   fieldType = FieldType;
 
-  ngOnInit() {
-    console.log(this.gridClass());
-  }
 
   onReceivedFilesFromFileField(event: any) {
     this.sendFilesToDynamicFormComp.emit(event);

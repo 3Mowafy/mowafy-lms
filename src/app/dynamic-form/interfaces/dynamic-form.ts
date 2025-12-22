@@ -40,7 +40,6 @@ export interface IFormFieldsConfig {
   fieldStyleClass?: string; // field container style class
   inputStyleClass?: string; // input style class
   checkBoxbinary?: boolean; // for checkbox, default: false
-  columns?: 1 | 2 | 3 | 4 | 5 | 6; // default: 1
   labelStyleClass?: string;
   floatlabel?: 'in' | 'over' | 'on'; // default: 'on'
   label?: string;
@@ -73,11 +72,35 @@ export interface IFormFieldsConfig {
   passwordWeakLabel?: string; // default: 'Weak'
   passwordMediumLabel?: string; // default: 'Medium'
   passwordStrongLabel?: string; // default: 'Strong'
+  passwordMediumRegex?: string;
+  passwordStrongRegex?: string;
   searchInMenu?: boolean; // default: true for select
   options?: { name: string; key: string }[]; // for select, multiselect, radio, checkbox
   rows?: number; // for textarea
   cols?: number; // for textarea
-  validators: string[];
+  validators?: { name: string; value?: any; message: string }[];
+  accept?: string; // for type of file
+  multiple?: boolean; // default: true
+  maxFileSize?: number; // default: 1000000
+  mode?: 'advanced' | 'basic' | undefined; // default: 'basic'
+  customUpload?: boolean; // default: true
+  cancelIcon?: string; // default: 'pi pi-times'
+  chooseIcon?: string; // default: 'pi pi-plus'
+  fileLimit?: number; // default: 5
+  chooseLabel?: string; // default: 'Browse'
+  uploadLabel?: string; // default: 'Upload'
+  cancelLabel?: string; // default: 'Cancel'
+  showUploadButton?: boolean; // default: false
+  showCancelButton?: boolean; // default: true
+  cancelStyleClass?: string; // default: empty
+  removeStyleClass?: string; // default: empty
+  chooseStyleClass?: string; // default: empty
+  invalidFileLimitMessageSummary?: string; // default: 'You can only upload up to {fileLimit} files.'
+  invalidFileSizeMessageSummary?: string; // default: 'File size exceeds maximum limit of {maxFileSize} MB.'
+  invalidFileTypeMessageSummary?: string; // default: 'Invalid file type. Please select files of type: {accept}'
+  invalidFileLimitMessageDetail?: string; // default: ''
+  invalidFileSizeMessageDetail?: string; // default: ''
+  invalidFileTypeMessageDetail?: string; // default: ''
 }
 
 export interface IFormConfig {

@@ -1,4 +1,5 @@
 import { FieldType } from './dynamic-form';
+import { FieldValidator } from './validators-types';
 
 interface BaseField {
   name: string;
@@ -11,6 +12,7 @@ interface BaseField {
   fieldLabelInputId?: string;
   floatlabel?: 'in' | 'over' | 'on'; // default: 'on'
   fieldStyleClass?: string; // field container style class
+  validators?: FieldValidator[];
 }
 
 export interface ICheckboxField extends BaseField {

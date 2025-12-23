@@ -13,7 +13,8 @@ import {
   IToggleField,
   ITextareaField,
   IFileField,
-} from './dynamic-form-fields.interfaces';
+} from './dynamic-form-fields';
+import { FieldValidator } from './validators-types';
 
 export enum FieldType {
   CHECKBOX,
@@ -101,9 +102,15 @@ export interface IFormFieldsConfig {
   invalidFileLimitMessageDetail?: string; // default: ''
   invalidFileSizeMessageDetail?: string; // default: ''
   invalidFileTypeMessageDetail?: string; // default: ''
+  validators?: FieldValidator[];
+  layoutGrid?: {
+    cols: 1 | 2 | 3 | 4;
+    direction: 'row' | 'col';
+  };
 }
 
 export interface IFormConfig {
+  formId?: string;
   formTitle: string;
   displayTitle: boolean;
   formTitleStyleClass?: string;

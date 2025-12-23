@@ -33,7 +33,6 @@ export class DynamicFormComp {
   readonly dynamicForm = form<IFormFields>(this.formFields, this.validationFn);
 
   validationFn(schemaPath: SchemaPathTree<IFormFields>) {
-    console.log('Schema Path:', schemaPath); // هنا الـ keys موجودة بس مش نافع نأكسس عليها
     return [
       required(schemaPath['cats'], { message: 'At least one category must be selected' }),
       required(schemaPath['email'], { message: 'Email is required' }),
@@ -45,8 +44,8 @@ export class DynamicFormComp {
       pattern(schemaPath['username'], /^[a-zA-Z0-9_]+$/, {
         message: 'Username can only contain letters, numbers, and underscores',
       }),
-      required(schemaPath['dateOfBirth'], { message: 'Date of Birth is required' }),
-      required(schemaPath['categories'], { message: 'At least one category must be selected' }),
+      required(schemaPath['lastName'], { message: 'At least one category must be selected' }),
+      minLength(schemaPath['lastName'], 3, { message: 'Maximum age is 65' }),
     ];
   }
 
@@ -81,5 +80,12 @@ export class DynamicFormComp {
 
   onReset() {
     this.dynamicForm()['reset'](this.formFieldsForReset());
+  }
+
+  getFieldErrorMessage(fieldName: string): string | null {
+    const errors = this.dynamicForm[fieldName]().errors();
+    if (!errors || !errors.length) return null;
+
+    return errors[0]?.message ?? null;
   }
 }

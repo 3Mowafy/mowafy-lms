@@ -38,6 +38,7 @@ export interface IDateField extends BaseField {
   showSecondsForDates?: boolean; // default: false
   showButtonBarForDates?: boolean; // default: true
   selectionModeForDates?: 'single' | 'multiple' | 'range'; // default: 'single'
+  showOnFocusForDates?: boolean; // default: false
 }
 
 export interface INumberField extends BaseField {

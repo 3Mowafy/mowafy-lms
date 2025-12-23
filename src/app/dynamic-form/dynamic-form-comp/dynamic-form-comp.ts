@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, signal } from '@angular/core';
+import { Component, input, linkedSignal, model } from '@angular/core';
 import {
   email,
   form,
@@ -24,16 +24,28 @@ import { FieldRenderComp } from './field-render-comp/field-render-comp';
   templateUrl: './dynamic-form-comp.html',
 })
 export class DynamicFormComp {
-  receivedFields = input.required<IFormFieldsConfig[]>();
+  receivedFields = model.required<IFormFieldsConfig[]>();
   formConfig = input.required<IFormConfig>();
 
-  readonly formFields = signal<IFormFields>({});
-  readonly formFieldsForReset = signal<IFormFields>({});
+  private readonly formModel = linkedSignal({
+    source: this.receivedFields,
+    computation: (fields) => this.buildFormModel(fields),
+  });
 
-  readonly dynamicForm = form<IFormFields>(this.formFields, this.validationFn);
+  private readonly emptyFormModel = linkedSignal({
+    source: this.receivedFields,
+    computation: (fields) => this.buildFormModel(fields),
+  });
+
+  readonly fieldType = FieldType;
+
+  readonly dynamicForm = form<IFormFields>(this.formModel, (schema) => {
+    this.validationFn(schema);
+  });
+
+
 
   validationFn(schemaPath: SchemaPathTree<IFormFields>) {
-    console.log('Schema Path:', schemaPath); // هنا الـ keys موجودة بس مش نافع نأكسس عليها
     return [
       required(schemaPath['cats'], { message: 'At least one category must be selected' }),
       required(schemaPath['email'], { message: 'Email is required' }),
@@ -42,7 +54,7 @@ export class DynamicFormComp {
       maxLength(schemaPath['keyfilter'], 10, { message: 'Maximum length is 10 characters' }),
       min(schemaPath['age'], 18, { message: 'Minimum age is 18' }),
       max(schemaPath['age'], 65, { message: 'Maximum age is 65' }),
-      pattern(schemaPath['username'], /^[a-zA-Z0-9_]+$/, {
+      pattern(schemaPath['lastName'], /^[a-zA-Z0-9_]+$/, {
         message: 'Username can only contain letters, numbers, and underscores',
       }),
       required(schemaPath['dateOfBirth'], { message: 'Date of Birth is required' }),
@@ -50,20 +62,12 @@ export class DynamicFormComp {
     ];
   }
 
-  readonly fieldType = FieldType;
-
-  ngOnInit() {
-    this.initializeForm();
-  }
-
-  initializeForm() {
-    const initailValues: IFormFields = {};
-
-    this.receivedFields().forEach((field) => {
-      initailValues[field.name] = field.value ?? null;
-    });
-    this.formFields.set(initailValues);
-    this.formFieldsForReset.set(initailValues);
+  buildFormModel(fields: IFormFieldsConfig[]): IFormFields {
+    const model: IFormFields = {};
+    for (const field of fields) {
+      model[field.name] = field.value ?? null;
+    }
+    return model;
   }
 
   onReceivedFilesFromFieldRender(event: any, fieldName: string) {
@@ -72,7 +76,6 @@ export class DynamicFormComp {
 
   onSubmit() {
     console.log('Dynamic Form Value:', this.dynamicForm().value());
-    console.log('Dynamic Form Errors:', this.dynamicForm());
   }
 
   onCancel() {
@@ -80,6 +83,6 @@ export class DynamicFormComp {
   }
 
   onReset() {
-    this.dynamicForm()['reset'](this.formFieldsForReset());
+    this.dynamicForm().reset(this.emptyFormModel());
   }
 }

@@ -6,6 +6,16 @@ import {
   IFormFields,
   initFormFields,
 } from './dynamic-form/interfaces/dynamic-form';
+import {
+  email,
+  max,
+  maxLength,
+  min,
+  minLength,
+  pattern,
+  required,
+  SchemaPathTree,
+} from '@angular/forms/signals';
 
 @Component({
   selector: 'app-root',

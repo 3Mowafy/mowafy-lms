@@ -24,6 +24,7 @@ import { IFormFieldsConfig } from '../../../interfaces/dynamic-form';
         [showSeconds]="field().showSecondsForDates ?? false"
         [showButtonBar]="field().showButtonBarForDates ?? true"
         [selectionMode]="field().selectionModeForDates ?? 'single'"
+        [showOnFocus]="field().showOnFocusForDates ?? false"
       />
       <label
         [for]="field().fieldLabelInputId ?? field().name"

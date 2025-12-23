@@ -53,6 +53,7 @@ export interface IFormFieldsConfig {
   showSecondsForDates?: boolean; // default: false
   showButtonBarForDates?: boolean; // default: true
   selectionModeForDates?: 'single' | 'multiple' | 'range'; // default: 'single'
+  showOnFocusForDates?: boolean; // default: false
   numberPrefix?: string; // default: empty
   numberSuffix?: string; // default: empty
   numberMode?: 'decimal' | 'currency' | 'percent'; // default: 'decimal'

@@ -4,7 +4,6 @@ interface BaseField {
   name: string;
   type: FieldType;
   value: any;
-  validators?: { name: string; value?: any; message: string }[];
   inputFluid?: boolean; // default: true
   inputStyleClass?: string;
   label?: string;

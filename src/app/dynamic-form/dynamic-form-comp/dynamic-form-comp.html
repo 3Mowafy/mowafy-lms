@@ -17,13 +17,13 @@
     (sendFilesToDynamicFormComp)="onReceivedFilesFromFieldRender($event, field.name)"
   ></app-field-render-comp>
 
-  <!-- @if (!dynamicForm[field.name].valid && dynamicForm[field.name].touched) { -->
-  <p-message severity="error" variant="simple" size="small">{{
-    dynamicForm[field.name]().errors() | json
-  }}</p-message>
-  }
-  <!-- } -->
-  <!--  -->
+  @if (dynamicForm[field.name]().touched() &&  getFieldErrorMessage(field.name)) {
+    <p-message severity="error" variant="simple" size="small">
+      {{ getFieldErrorMessage(field.name) }}
+    </p-message>
+    }
+}
+
   @if (formConfig().showFormButtons) {
   <div class="flex justify-between">
     <p-button

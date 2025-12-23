@@ -31,7 +31,6 @@ export class App {
       type: FieldType.CHECKBOX,
       name: 'cats',
       value: null,
-      validators: [{ name: 'required', message: 'At least one category must be selected' }],
       options: [
         { name: 'Accounting', key: 'A' },
         { name: 'Marketing', key: 'M' },

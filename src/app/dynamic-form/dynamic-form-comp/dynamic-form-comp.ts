@@ -57,8 +57,8 @@ export class DynamicFormComp {
       pattern(schemaPath['lastName'], /^[a-zA-Z0-9_]+$/, {
         message: 'Username can only contain letters, numbers, and underscores',
       }),
-      required(schemaPath['dateOfBirth'], { message: 'Date of Birth is required' }),
-      required(schemaPath['categories'], { message: 'At least one category must be selected' }),
+      required(schemaPath['lastName'], { message: 'At least one category must be selected' }),
+      minLength(schemaPath['lastName'], 3, { message: 'Maximum age is 65' }),
     ];
   }
 
@@ -84,5 +84,12 @@ export class DynamicFormComp {
 
   onReset() {
     this.dynamicForm().reset(this.emptyFormModel());
+  }
+
+  getFieldErrorMessage(fieldName: string): string | null {
+    const errors = this.dynamicForm[fieldName]().errors();
+    if (!errors || !errors.length) return null;
+
+    return errors[0]?.message ?? null;
   }
 }

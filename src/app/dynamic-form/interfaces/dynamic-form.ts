@@ -79,7 +79,6 @@ export interface IFormFieldsConfig {
   options?: { name: string; key: string }[]; // for select, multiselect, radio, checkbox
   rows?: number; // for textarea
   cols?: number; // for textarea
-  validators?: { name: string; value?: any; message: string }[];
   accept?: string; // for type of file
   multiple?: boolean; // default: true
   maxFileSize?: number; // default: 1000000
